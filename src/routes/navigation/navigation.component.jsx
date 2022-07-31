@@ -1,15 +1,17 @@
 import {Outlet,Link} from 'react-router-dom'
+import './navigation.styles.scss'
+import { ReactComponent as Crwnlogo } from '../../assests/crown.svg'
 
 const Navigation =() => {
     return (
       <>
         <div className='navigation'>
             <Link className='logo-container' to='/'>
-            <div>logo</div>
+            <Crwnlogo className='logo'/>
             </Link>
             <div className='nav-links-container'>
              <Link className='nav-link' to="/shop">
-                Shop
+                SHOP
              </Link>
             </div>
         </div>
