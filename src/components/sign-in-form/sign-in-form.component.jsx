@@ -1,4 +1,5 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
+import { UserContent } from '../../contexts/user.context';
 import { signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 import Button from '../button/button.component';
 import FormInput from '../form-input/form-input.component';
@@ -13,22 +14,22 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {email,password} = formFields;
-    console.log("formFields", formFields)
+   
+    const {setCurrentUser} = useContext(UserContent)
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     }
     const handleChange = (event) => {
             const {name,value} = event.target;
-            console.log("typeofname" ,typeof name, [name])
            setFormFields({...formFields, [name]: value})
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try{
-      const response = await signInAuthUserWithEmailAndPassword(email, password)
-      console.log("response", response)
+      const {user} = await signInAuthUserWithEmailAndPassword(email, password)
+      setCurrentUser(user)
         resetFormFields();
 
         } catch(error){
