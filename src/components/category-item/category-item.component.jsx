@@ -1,7 +1,7 @@
 import React from 'react'
 import './category-item.styles.scss'
 
-const categoryItem = ({category}) => {
+const CategoryItem = ({category}) => {
   const {title, imageUrl} = category;
   return (
     <div className='category-container'>
@@ -14,4 +14,4 @@ const categoryItem = ({category}) => {
   )
 }
 
-export default categoryItem
+export default CategoryItem
