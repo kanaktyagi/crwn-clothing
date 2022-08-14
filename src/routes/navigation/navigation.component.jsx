@@ -5,9 +5,12 @@ import { useContext } from 'react'
 import { UserContent } from '../../contexts/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 import CartIcon from '../../components/cart-icon/cart-icon.component'
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component'
+import { ToggleCartContext } from '../../contexts/toggle-cart.context'
 
 const Navigation =() => {
     const {currentUser} = useContext(UserContent)
+    const {toggleCart, changeToggleCart} = useContext(ToggleCartContext)
 
     
     return (
@@ -27,8 +30,13 @@ const Navigation =() => {
                 SIGN-IN
              </Link>
              )}
+              <div onClick={changeToggleCart}>
             <CartIcon/>
             </div>
+            </div>
+           
+           {toggleCart &&  <CartDropdown/>}
+          
         </div>
         <Outlet/>
       </>
