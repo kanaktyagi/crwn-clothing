@@ -7,7 +7,7 @@ import './cart-icon.styles.scss';
 
 const CartIcon = () => {
     const { cartItems } = useContext(ToggleCartContext)
-    const quantity = cartItems.reduce((acc, item) => { return acc + item.quantity }, 0)
+    const quantity = cartItems?.reduce((acc, item) => { return acc + item.quantity }, 0)
     return (
         <div className="cart-icon-container">
             <ShoppingIcon className="shopping-icon" />

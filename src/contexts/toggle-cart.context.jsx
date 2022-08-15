@@ -15,12 +15,27 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }]
 
 }
+const removeCartItem = (cartItems, id) => {
+    const existingCardItem = cartItems.find(item => item.id === id)
+    console.log("existingCartItem", existingCardItem)
+    if (existingCardItem) {
+        if (existingCardItem.quantity === 1) {
+            return cartItems.filter(cartItem => cartItem.id !== id)
+        }
+        else {
+            return cartItems.map(cartItem => cartItem.id === id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem)
+        }
+    }
+}
 export const ToggleCartProvider = ({ children }) => {
     const [toggleCart, setToggleCart] = useState(false)
     const [cartItems, setCartItems] = useState([])
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems, productToAdd))
+    }
+    const removeItemFromCart = (id) => {
+        setCartItems(removeCartItem(cartItems, id))
     }
 
     const changeToggleCart = () => {
@@ -31,7 +46,9 @@ export const ToggleCartProvider = ({ children }) => {
         toggleCart,
         changeToggleCart,
         addItemToCart,
-        cartItems
+        cartItems,
+        removeItemFromCart
+
     }
     return (
         <ToggleCartContext.Provider value={value}>
