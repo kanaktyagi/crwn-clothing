@@ -4,9 +4,7 @@ import { ToggleCartContext } from '../../contexts/toggle-cart.context'
 import './checkout.styles.scss'
 
 const Checkout = () => {
-    const { cartItems, addItemToCart, removeItemFromCart } = useContext(ToggleCartContext)
-    const addItem = (cartItem) => addItemToCart(cartItem)
-    const removeItem = (id) => removeItemFromCart(id)
+    const { cartItems, cartTotal } = useContext(ToggleCartContext)
 
     return (
         <div className='checkout-container'>
@@ -31,7 +29,7 @@ const Checkout = () => {
             {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} cartItem={cartItem} />
 
             )}
-            <span className='total'>Total: 0</span>
+            <span className='total'>Total: {cartTotal}</span>
         </div>
     )
 }
