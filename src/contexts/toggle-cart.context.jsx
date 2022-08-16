@@ -4,7 +4,10 @@ export const ToggleCartContext = createContext({
     toggleCart: false,
     changeToggleCart: () => null,
     cartItems: [],
-    addItemToCart: () => { }
+    addItemToCart: () => { },
+    removeItemFromCart: () => { },
+    clearItemFromCart: () => { }
+
 })
 const addCartItem = (cartItems, productToAdd) => {
     const existingCardItem = cartItems.find(item => item.id === productToAdd.id)
@@ -27,6 +30,9 @@ const removeCartItem = (cartItems, id) => {
         }
     }
 }
+const clearCartItem = (cartItems, id) => {
+    return cartItems.filter(cartItem => cartItem.id !== id)
+}
 export const ToggleCartProvider = ({ children }) => {
     const [toggleCart, setToggleCart] = useState(false)
     const [cartItems, setCartItems] = useState([])
@@ -36,6 +42,9 @@ export const ToggleCartProvider = ({ children }) => {
     }
     const removeItemFromCart = (id) => {
         setCartItems(removeCartItem(cartItems, id))
+    }
+    const clearItemFromCart = (id) => {
+        setCartItems(clearCartItem(cartItems, id))
     }
 
     const changeToggleCart = () => {
@@ -47,8 +56,8 @@ export const ToggleCartProvider = ({ children }) => {
         changeToggleCart,
         addItemToCart,
         cartItems,
-        removeItemFromCart
-
+        removeItemFromCart,
+        clearItemFromCart
     }
     return (
         <ToggleCartContext.Provider value={value}>
