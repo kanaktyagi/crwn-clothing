@@ -56,6 +56,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 
 }
 export const getCategoriesAndDocuments = async () => {
+  console.log("hi")
   const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
