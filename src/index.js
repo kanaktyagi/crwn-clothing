@@ -7,19 +7,23 @@ import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './contexts/user.context';
 import { ToggleCartProvider } from './contexts/toggle-cart.context';
 import { CategoriesProvider } from './contexts/categories.context';
+import { Provider } from 'react-redux'
+import { store } from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        {/* <UserProvider> */}
         <CategoriesProvider>
           <ToggleCartProvider>
             <App />
           </ToggleCartProvider>
         </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+        {/* </UserProvider> */}
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
