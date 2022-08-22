@@ -16,11 +16,11 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         {/* <UserProvider> */}
-        <CategoriesProvider>
-          <ToggleCartProvider>
-            <App />
-          </ToggleCartProvider>
-        </CategoriesProvider>
+        {/* <CategoriesProvider> */}
+        <ToggleCartProvider>
+          <App />
+        </ToggleCartProvider>
+        {/* </CategoriesProvider> */}
         {/* </UserProvider> */}
       </BrowserRouter>
     </Provider>
