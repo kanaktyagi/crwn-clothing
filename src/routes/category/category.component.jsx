@@ -5,6 +5,7 @@ import { CategoriesContext } from '../../contexts/categories.context';
 import { selectCategoriesMap } from '../../store/categories/category.selector';
 import './category.styles.scss'
 import { useSelector } from 'react-redux';
+
 const Category = () => {
     const { category } = useParams();
     const categoriesMap = useSelector(selectCategoriesMap)
